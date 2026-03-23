@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - ISA Les Mureaux</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    :root {
+      --primary-color: #2E8B57;
+      --secondary-color: #3AA76D;
+      --accent-color: #FF7F50;
+      --light-color: #f9f9f9;
+      --dark-color: #333;
+      --gray-color: #666;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--light-color);
+      color: var(--dark-color);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .logo img {
+      height: 50px;
+    }
+    
+    .logo-text {
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark-color);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+    
+    main.container {
+      padding: 60px 0 80px;
+    }
+    
+    h1, h2 {
+      color: var(--primary-color);
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+      text-align: center;
+    }
+    
+    form {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: 'Open Sans', sans-serif;
+      transition: border-color 0.3s;
+    }
+    
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-top: 40px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+      text-align: center;
+    }
+    
+    .back-link:hover {
+      color: var(--secondary-color);
+    }
+    
+    .back-link i {
+      margin-right: 5px;
+    }
+    
+ <div class="social-icons">
+  <a href="https://www.facebook.com/isalesmureaux" target="_blank"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://www.instagram.com/isalesmureaux" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://twitter.com/isalesmureaux" target="_blank"><i class="fab fa-twitter"></i></a>
+</div>
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">
+          <img src="logo_isa.png" alt="Logo ISA Les Mureaux" />
+          <span class="logo-text">ISA Les Mureaux</span>
+        </div>
+        <div class="nav-links">
+          <a href="page_avec_logo.html">Accueil</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Contactez-nous</h1>
+    <form action="https://formspree.io/f/xovdbkak" method="POST">
+      <label for="name">Nom complet *</label>
+      <input type="text" id="name" name="name" required placeholder="Votre nom complet" />
+
+      <label for="email">Adresse email *</label>
+      <input type="email" id="email" name="_replyto" required placeholder="Votre adresse email" />
+
+      <label for="subject">Objet</label>
+      <input type="text" id="subject" name="subject" placeholder="Sujet de votre message" />
+
+      <label for="message">Message *</label>
+      <textarea id="message" name="message" required placeholder="Votre message ici..."></textarea>
+
+      <button type="submit" class="btn">Envoyer</button>
+    </form>
+
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+  </main>
+
+   <footer id="contact">
+    <div class="container">
+        <div class="footer-content" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 2rem;">
+            
+            <!-- Bloc Contact -->
+            <div class="contact-info" style="flex: 1 1 300px;">
+                <h3>Contact</h3>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <a href="https://www.google.com/maps?q=151+Rue+Jean+Jaurès,+78130+Les+Mureaux" target="_blank">
+                        151 Rue Jean Jaurès, 78130 Les Mureaux
+                    </a>
+                </p>
+                <p><i class="fas fa-phone"></i> <a href="tel:0178801103">01 78 80 11 03</a></p>
+                <p>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:contact@isa-lesmureaux.org">asso.isa@gmail.com</a>
+                </p>
+            </div>
+
+            <!-- Bloc Réseaux Sociaux aligné à droite -->
+            <div class="social" style="flex: 1 1 300px; text-align: right;">
+                <h3>Suivez-nous</h3>
+                <div class="social-icons" style="display: flex; justify-content: flex-end; gap: 1rem;">
+                    <a href="https://www.facebook.com/isalesmureaux" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/isalesmureaux" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://x.com/Asso_ISA" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mentions légales centrées -->
+            <div class="legal" style="flex-basis: 100%; text-align: center; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem;">
+                <p>&copy; 2023 ISA Les Mureaux - Tous droits réservés</p>
+                <a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a>
+            </div>
+
+        </div>
+    </div>
+</footer> 
+</body>
+ </html>

@@ -1,0 +1,188 @@
+<section class="partenaires-section">
+    <div class="container">
+        <h2>Nos partenaires engagés</h2>
+        <p class="sous-titre">Ensemble pour le développement local aux Mureaux</p>
+        
+        <div class="partenaires-grid">
+            <!-- Partenaire 1 -->
+            <div class="partenaire-card">
+                <div class="partenaire-logo">
+                    <img src="mureaux.jpg" alt="Ville des Mureaux">
+                </div>
+                <div class="partenaire-content">
+                    <h3>Ville des Mureaux</h3>
+                    <p>Soutien institutionnel et mise à disposition de locaux pour nos actions de solidarité.</p>
+                </div>
+            </div>
+
+            <!-- Partenaire 2 -->
+            <div class="partenaire-card">
+                <div class="partenaire-logo">
+                    <img src="departementale.jpg" alt="Conseil Départemental des Yvelines">
+                </div>
+                <div class="partenaire-content">
+                    <h3>Conseil Départemental</h3>
+                    <p>Financement de projets d'insertion et soutien à nos ateliers professionnels.</p>
+                </div>
+            </div>
+
+            <!-- Partenaire 3 -->
+            <div class="partenaire-card">
+                <div class="partenaire-logo">
+                    <img src="adis.png" alt="ADIS">
+                </div>
+                <div class="partenaire-content">
+                    <h3>ADIS</h3>
+                    <p>Accompagnement personnalisé pour nos bénéficiaires en situation de handicap.</p>
+                </div>
+            </div>
+
+            <!-- Partenaire 4 -->
+            <div class="partenaire-card">
+                <div class="partenaire-logo">
+                    <img src="ferme.jpeg" alt="Ferme de la Haye">
+                </div>
+                <div class="partenaire-content">
+                    <h3>Ferme de la Haye</h3>
+                    <p>Approvisionnement en produits frais pour notre épicerie solidaire et ateliers cuisine.</p>
+                </div>
+            </div>
+
+            <!-- Partenaire 5 -->
+            <div class="partenaire-card">
+                <div class="partenaire-logo">
+                    <img src="transgourmet.jpeg" alt="Transgourmet">
+                </div>
+                <div class="partenaire-content">
+                    <h3>Transgourmet</h3>
+                    <p>Dons alimentaires et achats à prix associatif pour notre distribution alimentaire.</p>
+                </div>
+            </div>
+
+            <!-- Partenaire 6 -->
+            <div class="partenaire-card">
+                <div class="partenaire-logo">
+                    <img src="revivre.jpeg" alt="Association Revivre">
+                </div>
+                <div class="partenaire-content">
+                    <h3>Association Revivre</h3>
+                    <p>Partenariat pour l'organisation d'événements intergénérationnels.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="partenaires-cta">
+            <p>Vous souhaitez devenir partenaire ?</p>
+            <a href="contact.html" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                Nous contacter
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .partenaires-section {
+        background-color: #f8f9fa;
+        padding: 4rem 0;
+    }
+
+    .partenaires-section .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .partenaires-section h2 {
+        text-align: center;
+        color: #2c3e50;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .partenaires-section .sous-titre {
+        text-align: center;
+        color: #7f8c8d;
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+    }
+
+    .partenaires-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .partenaire-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        display: flex;
+    }
+
+    .partenaire-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .partenaire-logo {
+        flex: 0 0 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        background: #f1f5f9;
+    }
+
+    .partenaire-logo img {
+        max-width: 100px;
+        max-height: 80px;
+        object-fit: contain;
+    }
+
+    .partenaire-content {
+        flex: 1;
+        padding: 1.5rem;
+    }
+
+    .partenaire-content h3 {
+        color: #3498db;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .partenaire-content p {
+        color: #4a5568;
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    .partenaires-cta {
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .partenaires-cta p {
+        font-size: 1.1rem;
+        color: #2d3748;
+        margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .partenaires-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .partenaire-card {
+            flex-direction: column;
+        }
+        
+        .partenaire-logo {
+            flex: 0 0 auto;
+            padding: 1rem 0;
+        }
+		
+    }
+
+</style>

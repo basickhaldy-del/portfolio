@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISA Les Mureaux - Épicerie Solidaire</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>ISA Les Mureaux</h1>
+            <p>Solidarité • Autonomie • Partenariat</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#actions">Nos actions</a></li>
+                <li><a href="#soutenir">Nous soutenir</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Bannière Hero -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h2>Épicerie solidaire des Mureaux</h2>
+            <p>Agissons ensemble contre la précarité alimentaire et l'isolement.</p>
+            <a href="#soutenir" class="btn">Faire un don</a>
+        </div>
+    </section>
+
+    <!-- Section Actions -->
+    <section id="actions" class="actions">
+        <h2>Nos actions</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>📦 Épicerie solidaire</h3>
+                <p>Accès à des produits alimentaires à prix solidaires pour les habitants des Mureaux.</p>
+            </div>
+            <div class="card">
+                <h3>👩‍🍳 Ateliers autonomes</h3>
+                <p>Cuisine, gestion de budget, et compétences psychosociales.</p>
+            </div>
+            <div class="card">
+                <h3>🤝 Partenariats</h3>
+                <p>Collaboration avec la Mairie et les acteurs locaux.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Soutien -->
+    <section id="soutenir" class="soutenir">
+        <h2>Nous soutenir</h2>
+        <div class="flex">
+            <div class="option">
+                <h3>👐 Bénévolat</h3>
+                <p>Rejoignez notre équipe !</p>
+                <a href="#contact" class="btn">Contactez-nous</a>
+            </div>
+            <div class="option">
+                <h3>💰 Dons</h3>
+                <p>Soutenez nos actions financièrement.</p>
+                <a href="https://www.helloasso.com" class="btn" target="_blank">Donner via HelloAsso</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact">
+        <div class="contact-info">
+            <h3>Contact</h3>
+            <p>📍 Adresse: [À compléter]</p>
+            <p>📞 Téléphone: [À compléter]</p>
+            <p>✉️ Email: contact@isa-lesmureaux.org</p>
+        </div>
+        <div class="social">
+            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+        </div>
+    </footer>
+</body>
+</html>
+<style>
+/* Variables couleurs */
+:root {
+    --primary: #FF7F50; /* Orange solidaire */
+    --secondary: #2E8B57; /* Vert alimentation */
+    --dark: #333;
+    --light: #f9f9f9;
+}
+
+/* Reset et polices */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Header */
+header {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    color: var(--primary);
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav li {
+    margin-left: 1.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: bold;
+}
+
+/* Hero */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('epicerie-solidaire.jpg');
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 5rem 1rem;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+/* Sections */
+section {
+    padding: 4rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: var(--secondary);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background: var(--dark);
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.social img {
+    width: 40px;
+    margin: 0 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+    nav ul {
+        margin-top: 1rem;
+    }
+}
+</style>

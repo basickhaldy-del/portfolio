@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Épicerie solidaire - ISA Les Mureaux</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2E8B57;
+      --secondary-color: #3AA76D;
+      --accent-color: #FF7F50;
+      --light-color: #f9f9f9;
+      --dark-color: #333;
+      --gray-color: #666;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--light-color);
+      color: var(--dark-color);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .logo img {
+      height: 50px;
+    }
+    
+    .logo-text {
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark-color);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+  color: var(--accent-color);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+    
+    
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      margin-bottom: 50px;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-size: 1.1rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .content-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 80px;
+      align-items: center;
+    }
+    
+    .text-content {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .image-content {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .image-content img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    h1, h2, h3 {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+    }
+    
+    p {
+      margin-bottom: 20px;
+      color: var(--gray-color);
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 50px 0;
+    }
+    
+    .feature-card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    
+    .info-box {
+      background-color: white;
+      border-left: 4px solid var(--primary-color);
+      padding: 25px;
+      margin: 40px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .info-box h3 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+    
+    .procedure-steps {
+      margin: 40px 0;
+    }
+    
+    .step {
+      display: flex;
+      margin-bottom: 30px;
+      align-items: flex-start;
+    }
+    
+    .step-number {
+      background-color: var(--primary-color);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+      flex-shrink: 0;
+      font-weight: bold;
+    }
+    
+    .step-content {
+      flex: 1;
+    }
+    
+    .testimonials {
+      background-color: white;
+      padding: 80px 20px;
+      text-align: center;
+      margin: 50px 0;
+    }
+    
+    .testimonial-slider {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .testimonial {
+      display: none;
+      padding: 20px;
+    }
+    
+    .testimonial.active {
+      display: block;
+      animation: fadeIn 1s;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+    
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    
+    .slider-controls {
+      margin-top: 30px;
+    }
+    
+    .slider-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background-color: #ccc;
+      border-radius: 50%;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+    
+    .slider-dot.active {
+      background-color: var(--primary-color);
+    }
+    
+    .cta-section {
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      border-radius: 10px;
+      margin: 50px 0;
+    }
+    
+    .cta-section h2 {
+      color: white;
+    }
+    
+    .cta-section .btn {
+      background-color: white;
+      color: var(--primary-color);
+    }
+    
+    .cta-section .btn:hover {
+      background-color: #f0f0f0;
+    }
+    
+footer a {
+    text-decoration: none;
+    color: inherit; /* Garde la couleur du texte par défaut */
+    transition: all 0.3s ease; /* Transition fluide pour les effets */
+}
+
+footer a:hover {
+    font-weight: bold; /* Texte en gras */
+    text-decoration: underline; /* Texte souligné */
+    color: var(--primary); /* Change la couleur au survol */
+    background-color: rgba(255, 127, 80, 0.1); /* Ajoute un léger fond (translucide) */
+}
+
+    footer {
+        background: var(--dark);
+        color: var(--white);
+        padding: 3rem 0 1rem;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .contact-info p {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .social h3 {
+        color: var(--white);
+        margin-bottom: 1rem;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .social-icons a {
+        color: var(--white);
+        font-size: 1.5rem;
+        transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+        color: var(--primary);
+    }
+
+    .legal {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        font-size: 0.9rem;
+    }
+
+    .legal a {
+        color: var(--white);
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .legal a:hover {
+        color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+        nav ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            flex-direction: column;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul.active {
+            display: flex;
+        }
+
+        nav li {
+            margin: 0.5rem 0;
+        }
+
+        .menu-toggle {
+            display: block;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+        }
+
+        .hero p {
+            font-size: 1rem;
+        }
+
+        .hero-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 250px;
+            margin-bottom: 1rem;
+        }
+		
+    }
+
+    
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">
+          <img src="logo_isa.png" alt="Logo ISA Les Mureaux">
+          <span class="logo-text">ISA Les Mureaux</span>
+        </div>
+        <div class="nav-links">
+          <a href="page_avec_logo.html">Accueil</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Épicerie Solidaire ISA</h1>
+      <p>Un lieu d'accueil, de partage et de solidarité pour les familles en situation de précarité</p>
+      <a href="#conditions-acces" class="btn">Conditions d'accès</a>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="content-section">
+      <div class="text-content">
+        <h2>L'épicerie sociale et solidaire ISA</h2>
+        <p>Gérée par l'association Insertion, Solidarité, Autonomie (ISA), notre épicerie solidaire est un dispositif d'aide alimentaire qui permet aux familles en situation de difficulté d'accéder à des produits de première nécessité à prix réduits.</p>
+        
+        <div class="info-box">
+          <h3>Fonctionnement de l'épicerie</h3>
+          <p>L'épicerie propose des produits alimentaires et d'hygiène à seulement <strong>25% de leur valeur marchande</strong> . Contrairement à une aide alimentaire d'urgence, notre épicerie solidaire fonctionne sur le principe d'une participation financière symbolique qui permet de préserver la dignité des bénéficiaires.</p>
+        </div>
+      </div>
+      <div class="image-content">
+        <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Épicerie solidaire">
+      </div>
+    </section>
+
+    <section id="conditions-acces" class="content-section">
+      <div class="image-content">
+        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Accompagnement social">
+      </div>
+      <div class="text-content">
+        <h2>Conditions d'accès</h2>
+        <p>L'accès à notre épicerie solidaire est soumis à une procédure d'admission qui garantit un accompagnement personnalisé et adapté à chaque situation.</p>
+        
+        <div class="procedure-steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Montage du dossier</h3>
+              <p>Le bénéficiaire potentiel doit contacter un travailleur social (assistant social, CCAS, association partenaire...) qui l'aidera à monter un dossier de demande.</p>
+            </div>
+          </div>
+          
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Transmission à ISA</h3>
+              <p>Le travailleur social transmet le dossier complet à la Commission d'attribution de l'association ISA pour accord.</p>
+            </div>
+          </div>
+          
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Validation</h3>
+              <p>La Commission examine la demande et notifie sa décision immédiatement. En cas d'acceptation, l'accès est accordé pour une période initiale de <strong>3 mois</strong>, renouvelable après évaluation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-euro-sign"></i>
+        </div>
+        <h3>Économie substantielle</h3>
+        <p>Jusqu'à 75% d'économie sur les produits de première nécessité, permettant de dégager du budget pour d'autres besoins essentiels.</p>
+      </div>
+      
+        
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-store"></i>
+        </div>
+        <h3>Choix et dignité</h3>
+        <p>Comme dans un commerce classique, les bénéficiaires choisissent leurs produits selon leurs préférences et besoins.</p>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="container">
+        <h2>Ils témoignent</h2>
+        <div class="testimonial-slider">
+          <div class="testimonial active">
+            <p class="testimonial-text">"Avec l'épicerie solidaire, je peux nourrir correctement mes enfants tout en payant mon loyer. Les 85% d'économie sur les courses changent tout pour mon budget mensuel."</p>
+            <p class="testimonial-author">- Marie, mère de deux enfants</p>
+          </div>
+          <div class="testimonial">
+            <p class="testimonial-text">"En tant qu'assistante sociale, je constate l'impact positif de l'épicerie ISA. C'est bien plus qu'une aide alimentaire, c'est un véritable tremplin vers l'autonomie."</p>
+            <p class="testimonial-author">- Sarah, assistante sociale</p>
+          </div>
+          <div class="testimonial">
+            <p class="testimonial-text">"L'accompagnement personnalisé m'a permis de retrouver confiance et de me former. Aujourd'hui, j'ai un emploi stable et je viens aider à l'épicerie comme bénévole."</p>
+            <p class="testimonial-author">- Karim, ancien bénéficiaire</p>
+          </div>
+          <div class="slider-controls">
+            <span class="slider-dot active" onclick="showTestimonial(0)"></span>
+            <span class="slider-dot" onclick="showTestimonial(1)"></span>
+            <span class="slider-dot" onclick="showTestimonial(2)"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>Vous souhaitez bénéficier de l'épicerie solidaire ?</h2>
+      <p style="color: black;">Prenez contact avec un travailleur social ou notre équipe pour initier la démarche.</p>
+      <a href="contact.html" class="btn">Nous contacter</a>
+    </section>
+
+    <a href="page_avec_logo.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+  </main>
+
+  <footer id="contact">
+    <div class="container">
+        <div class="footer-content" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 2rem;">
+            
+            <!-- Bloc Contact -->
+            <div class="contact-info" style="flex: 1 1 300px;">
+                <h3>Contact</h3>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <a href="https://www.google.com/maps?q=151+Rue+Jean+Jaurès,+78130+Les+Mureaux" target="_blank">
+                        151 Rue Jean Jaurès, 78130 Les Mureaux
+                    </a>
+                </p>
+                <p><i class="fas fa-phone"></i> <a href="tel:0178801103">01 78 80 11 03</a></p>
+                <p>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:contact@isa-lesmureaux.org">asso.isa@gmail.com</a>
+                </p>
+            </div>
+
+            <!-- Bloc Réseaux Sociaux aligné à droite -->
+            <div class="social" style="flex: 1 1 300px; text-align: right;">
+                <h3>Suivez-nous</h3>
+                <div class="social-icons" style="display: flex; justify-content: flex-end; gap: 1rem;">
+                    <a href="https://www.facebook.com/isalesmureaux" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/association.isa.2025/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://x.com/Asso_ISA" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mentions légales centrées -->
+            <div class="legal" style="flex-basis: 100%; text-align: center; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem;">
+                <p>&copy; 2023 ISA Les Mureaux - Tous droits réservés</p>
+                <a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+  <script>
+    // Slider de témoignages
+    let currentTestimonial = 0;
+    const testimonials = document.querySelectorAll('.testimonial');
+    const dots = document.querySelectorAll('.slider-dot');
+    
+    function showTestimonial(index) {
+      testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      currentTestimonial = index;
+      testimonials[currentTestimonial].classList.add('active');
+      dots[currentTestimonial].classList.add('active');
+    }
+    
+    // Auto-rotation des témoignages
+    setInterval(() => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    }, 5000);
+    
+    // Animation au défilement
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.content-section, .feature-card, .procedure-steps').forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
