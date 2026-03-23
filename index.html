@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hatim Khaldy - Portfolio Gamer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0c0f;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ff00c8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2" fill="%23ff00c8"/></svg>') 12 12, auto;
+        }
+
+        /* Effet scanlines */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0px, rgba(0, 0, 0, 0.1) 2px, transparent 2px, transparent 4px);
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.3;
+        }
+
+        /* Fond animé gaming */
+        .gaming-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 0, 200, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+
+        .cyber-circle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,0,200,0.2) 0%, transparent 70%);
+            top: 20%;
+            left: 10%;
+            animation: floatCircle 8s ease-in-out infinite;
+            filter: blur(40px);
+        }
+
+        .cyber-circle2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,255,255,0.2) 0%, transparent 70%);
+            bottom: 10%;
+            right: 5%;
+            animation: floatCircle 12s ease-in-out infinite reverse;
+            filter: blur(40px);
+        }
+
+        .particles-game {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle-game {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ff00c8;
+            box-shadow: 0 0 10px #ff00c8;
+            border-radius: 50%;
+            animation: particleFloat 3s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes floatCircle {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 50px) scale(1.2); }
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+        }
+
+        /* Navigation gaming */
+        .gaming-nav {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+            background: rgba(10, 12, 15, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid #ff00c8;
+            border-radius: 10px;
+            padding: 0.5rem;
+            box-shadow: 0 0 20px #ff00c8, inset 0 0 10px rgba(255,0,200,0.3);
+        }
+
+        .game-btn {
+            padding: 1rem 2rem;
+            border: none;
+            background: transparent;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: #00ffff;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s;
+            text-shadow: 0 0 5px #00ffff;
+            letter-spacing: 1px;
+        }
+
+        .game-btn::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #ff00c8;
+            box-shadow: 0 0 10px #ff00c8;
+            transition: width 0.3s;
+        }
+
+        .game-btn:hover::before {
+            width: 100%;
+        }
+
+        .game-btn.active {
+            color: #ff00c8;
+            text-shadow: 0 0 10px #ff00c8;
+        }
+
+        .game-btn.active::before {
+            width: 100%;
+            background: #00ffff;
+            box-shadow: 0 0 10px #00ffff;
+        }
+
+        /* Quick Navigation */
+        .quick-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .quick-nav a {
+            background: rgba(0,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #00ffff;
+            font-size: 0.7rem;
+            font-family: 'Press Start 2P', cursive;
+            transition: all 0.3s;
+            border: 1px solid #00ffff;
+        }
+
+        .quick-nav a:hover {
+            background: #00ffff;
+            color: #0a0c0f;
+            box-shadow: 0 0 15px #00ffff;
+            transform: translateY(-2px);
+        }
+
+        /* Pages */
+        .page {
+            min-height: 100vh;
+            display: none;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Page 1 - Nom gaming */
+        #page1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-hero {
+            text-align: center;
+        }
+
+        .game-title {
+            margin-bottom: 3rem;
+        }
+
+        .game-name {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 4rem;
+            color: #00ffff;
+            text-shadow: 
+                0 0 20px #00ffff,
+                4px 4px 0 #ff00c8,
+                8px 8px 0 rgba(255,0,200,0.3);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: skew(0deg, 0deg); opacity: 1; }
+            95% { transform: skew(0deg, 0deg); opacity: 1; }
+            96% { transform: skew(5deg, 2deg) scale(1.02); opacity: 0.8; text-shadow: 2px 2px 0 #ff00c8, -2px -2px 0 #00ffff; }
+            97% { transform: skew(-5deg, -2deg) scale(0.98); opacity: 0.9; text-shadow: -2px 2px 0 #ff00c8, 2px -2px 0 #00ffff; }
+            98% { transform: skew(0deg, 0deg) scale(1); opacity: 1; }
+        }
+
+        .player-tag {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            color: #ff00c8;
+            text-shadow: 0 0 10px #ff00c8;
+            margin-bottom: 2rem;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .level-bar {
+            width: 300px;
+            height: 20px;
+            background: #1a1a1a;
+            border: 2px solid #00ffff;
+            margin: 2rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .level-fill {
+            height: 100%;
+            width: 85%;
+            background: linear-gradient(90deg, #ff00c8, #00ffff);
+            animation: levelPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes levelPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .press-start {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: #00ffff;
+            animation: pressStart 1.5s infinite;
+        }
+
+        @keyframes pressStart {
+            0%, 100% { opacity: 1; text-shadow: 0 0 10px #00ffff; }
+            50% { opacity: 0.5; text-shadow: 0 0 20px #00ffff; }
+        }
+
+        /* Page 2 - Profil gaming */
+        .player-card {
+            background: rgba(20, 22, 27, 0.9);
+            border: 2px solid #ff00c8;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(255,0,200,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .player-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,0,200,0.1), transparent);
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .player-header {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .player-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff00c8, #00ffff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 4rem;
+            color: white;
+            border: 4px solid white;
+            box-shadow: 0 0 30px #ff00c8;
+            position: relative;
+            animation: avatarPulse 3s infinite;
+        }
+
+        @keyframes avatarPulse {
+            0%, 100% { box-shadow: 0 0 30px #ff00c8; }
+            50% { box-shadow: 0 0 50px #00ffff; }
+        }
+
+        .player-info h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: #00ffff;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px #00ffff;
+        }
+
+        .player-class {
+            display: inline-block;
+            background: #ff00c8;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            margin-bottom: 1rem;
+        }
+
+        .doc-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .doc-btn {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 2px solid #00ffff;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #00ffff;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            cursor: pointer;
+        }
+
+        .doc-btn:hover {
+            background: #00ffff;
+            color: #0a0c0f;
+            box-shadow: 0 0 20px #00ffff;
+            transform: scale(1.05);
+        }
+
+        /* Stats gaming */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(20, 22, 27, 0.9);
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px #00ffff;
+        }
+
+        .stat-number {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: #ff00c8;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #00ffff;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Sections communes */
+        .section-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            color: #ff00c8;
+            margin: 3rem 0 2rem;
+            text-shadow: 0 0 10px #ff00c8;
+        }
+
+        .quests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .quest-card {
+            background: rgba(20, 22, 27, 0.9);
+            border: 2px solid #ff00c8;
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .quest-card::after {
+            content: '⚔️';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 2rem;
+            transform: rotate(15deg);
+            filter: drop-shadow(0 0 10px #ff00c8);
+        }
+
+        .quest-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px #ff00c8;
+        }
+
+        .quest-date {
+            color: #00ffff;
+            font-size: 0.7rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .quest-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .quest-company {
+            color: #ff00c8;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        /* Style pour les onglets */
+        .tab-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .tab-btn {
+            background: #ff00c8;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #ff00c8;
+        }
+
+        .tab-btn.cyan {
+            background: #00ffff;
+            color: black;
+        }
+
+        .tab-btn.cyan:hover {
+            box-shadow: 0 0 10px #00ffff;
+        }
+
+        .tab-content {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .xp-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .xp-tag {
+            background: #00ffff;
+            color: #0a0c0f;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            box-shadow: 0 0 10px #00ffff;
+        }
+
+        .article-link {
+            color: #00ffff;
+            font-size: 0.7rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 0.5rem;
+            transition: all 0.3s;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .article-link:hover {
+            text-shadow: 0 0 10px #00ffff;
+            transform: translateX(5px);
+        }
+
+        /* Research Lab */
+        .research-lab {
+            background: rgba(20, 22, 27, 0.9);
+            border: 2px solid #00ffff;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .lab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .lab-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #ff00c8;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .lab-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255,0,200,0.3);
+        }
+
+        .lab-item h4 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: #00ffff;
+            margin-bottom: 0.8rem;
+            padding-right: 70px;
+            line-height: 1.4;
+        }
+
+        .lab-item p {
+            color: #ffffff;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .article-date {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff00c8;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.5rem;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        /* Skill Tree */
+        .skill-tree {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .skill-node {
+            background: linear-gradient(135deg, #ff00c8, #00ffff);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            border: 2px solid white;
+            box-shadow: 0 0 20px rgba(255,0,200,0.5);
+            animation: nodePulse 2s infinite;
+        }
+
+        @keyframes nodePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* OS Gaming Cards */
+        .os-gaming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .os-gaming-card {
+            background: rgba(20, 22, 27, 0.9);
+            border: 2px solid #00ffff;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .os-gaming-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 0 40px #00ffff;
+            border-color: #ff00c8;
+        }
+
+        .os-gaming-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0,255,255,0.1), transparent);
+            animation: scan 6s linear infinite;
+        }
+
+        .os-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .os-gaming-card h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .os-gaming-card h3.windows { color: #00a4ef; text-shadow: 0 0 10px #00a4ef; }
+        .os-gaming-card h3.kali { color: #ffb13b; text-shadow: 0 0 10px #ffb13b; }
+        .os-gaming-card h3.debian { color: #d70751; text-shadow: 0 0 10px #d70751; }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        /* Formulaire de contact */
+        .contact-form-container {
+            background: rgba(20, 22, 27, 0.9);
+            border: 2px solid #00ffff;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: #00ffff;
+            letter-spacing: 1px;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #00ffff;
+            color: white;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: #ff00c8;
+            box-shadow: 0 0 15px #ff00c8;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+
+        .form-group select option {
+            background: #0a0c0f;
+            color: white;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ff00c8, #00ffff);
+            border: none;
+            color: white;
+            padding: 1.2rem;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px #ff00c8;
+        }
+
+        .form-success {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0,255,0,0.1);
+            border: 2px solid #00ff00;
+            border-radius: 15px;
+            color: #00ff00;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+        }
+
+        .form-success i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Map */
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+
+        /* Langues */
+        .langues-grid {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .langue-card {
+            background: rgba(20, 22, 27, 0.9);
+            border: 1px solid #00ffff;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .langue-card span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .langue-card h4 {
+            color: #ff00c8;
+            margin-bottom: 0.5rem;
+        }
+
+        .langue-card p {
+            color: #00ffff;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .game-name { font-size: 2rem; }
+            .player-header { flex-direction: column; text-align: center; gap: 2rem; }
+            .game-btn { padding: 0.6rem 1rem; font-size: 0.5rem; }
+            .gaming-nav { flex-wrap: wrap; width: 90%; }
+            .section-title { font-size: 1rem; }
+            .contact-form-container { padding: 1.5rem; }
+            .quests-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fond gaming -->
+    <div class="gaming-bg">
+        <div class="grid-overlay"></div>
+        <div class="cyber-circle"></div>
+        <div class="cyber-circle2"></div>
+        <div class="particles-game" id="particles-game"></div>
+    </div>
+
+    <!-- Navigation gaming -->
+    <nav class="gaming-nav">
+        <button class="game-btn active" onclick="changePage(1)">PLAYER 1</button>
+        <button class="game-btn" onclick="changePage(2)">STATS</button>
+    </nav>
+
+    <!-- Page 1 - Accueil gaming -->
+    <div id="page1" class="page active">
+        <div class="container game-hero">
+            <div class="game-title">
+                <div class="game-name">
+                    HATIM<br>KHALDY
+                </div>
+                <div class="player-tag">
+                    █ LEVEL 2 - BTS SIO SLAM █
+                </div>
+                <div class="level-bar">
+                    <div class="level-fill"></div>
+                </div>
+            </div>
+            <div class="press-start">
+                ⏎ PRESS START TO CONTINUE ⏎
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2 - Profil gaming -->
+    <div id="page2" class="page">
+        <div class="container">
+            
+            <!-- Quick Navigation -->
+            <div class="quick-nav">
+                <a href="#profil">🎮 PROFIL</a>
+                <a href="#stages">⚔️ STAGES</a>
+                <a href="#os">💻 OS</a>
+                <a href="#formation">🎓 FORMATION</a>
+                <a href="#certifs">🏆 CERTIFS</a>
+                <a href="#outils">🛠️ OUTILS</a>
+                <a href="#veille">🔬 VEILLE</a>
+                <a href="#skills">🌟 SKILLS</a>
+                <a href="#langues">🗣️ LANGUES</a>
+                <a href="#contact">📬 CONTACT</a>
+            </div>
+
+            <!-- Player Card - PROFIL -->
+            <div id="profil" class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">HK</div>
+                    <div class="player-info">
+                        <h1>HATIM KHALDY</h1>
+                        <div class="player-class">CLASSE: DÉVELOPPEUR</div>
+                        <div class="doc-links">
+                            <a href="cv.pdf" class="doc-btn" target="_blank">📄 LOOK CV</a>
+                            <a href="lm.pdf" class="doc-btn" target="_blank">✉️ LOOK LETTRE DE MOTIVATION</a>
+                            <a href="TablSynth.pdf" class="doc-btn" target="_blank">📊 TABLEAU E4</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats avancées -->
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-number">2</div><div class="stat-label">STAGES</div></div>
+                <div class="stat-card"><div class="stat-number">9</div><div class="stat-label">CERTIFICATIONS</div></div>
+                <div class="stat-card"><div class="stat-number">15+</div><div class="stat-label">COMPÉTENCES</div></div>
+                <div class="stat-card"><div class="stat-number">∞</div><div class="stat-label">VEILLE ACTIVE</div></div>
+                <div class="stat-card"><div class="stat-number">500+</div><div class="stat-label">HEURES DE CODE</div></div>
+            </div>
+
+            <!-- Bio -->
+            <div class="player-card">
+                <p style="font-size: 1.1rem; line-height: 1.8;">🎮 Passionné par le développement et les technologies, je suis actuellement en deuxième année de BTS SIO, option SLAM. Curieux, rigoureux et toujours en quête d'apprentissage, je souhaite me spécialiser dans le développement d'applications tout en intégrant des compétences en cybersécurité. Mon objectif ? Concevoir des expériences interactives innovantes, capables de se démarquer et de marquer les esprits.</p>
+            </div>
+
+            <!-- Stages = Quêtes avec onglets détaillés -->
+            <h2 id="stages" class="section-title">⚔️ QUÊTES ACCOMPLIES (STAGES) ⚔️</h2>
+            <div class="quests-grid">
+                <!-- Stage 1 - Association ISA -->
+                <div class="quest-card">
+                    <div class="quest-date">🗓️ STAGE 1 - MAI 2025 - JUIN 2025 (6 SEMAINES)</div>
+                    <div class="quest-title">Développeur Web - Association ISA</div>
+                    <div class="quest-company">🏢 ISA (Insertion Solidarité Autonomie) - Les Mureaux (78)</div>
+                    
+                    <!-- Boutons d'onglets Stage 1 -->
+                    <div class="tab-buttons">
+                        <button class="tab-btn" onclick="showTabISA(1)">📋 PRÉSENTATION</button>
+                        <button class="tab-btn cyan" onclick="showTabISA(2)">🎯 OBJECTIFS</button>
+                        <button class="tab-btn" onclick="showTabISA(3)">💻 RÉALISATIONS</button>
+                        <button class="tab-btn cyan" onclick="showTabISA(4)">🛠️ TECHNOS</button>
+                        <button class="tab-btn" onclick="showTabISA(5)">🔗 LIEN SITE</button>
+                        <button class="tab-btn cyan" onclick="showTabISA(6)">📊 BILAN</button>
+                    </div>
+
+                    <!-- Contenu des onglets Stage 1 -->
+                    <div id="isa-tab1" class="tab-content active">
+                        <h4 style="color: #ff00c8; margin-bottom: 0.5rem;">📋 PRÉSENTATION</h4>
+                        <p><span style="color: #ff00c8;">Nom :</span> ISA (Insertion Solidarité Autonomie)</p>
+                        <p><span style="color: #ff00c8;">Localisation :</span> Les Mureaux (78)</p>
+                        <p><span style="color: #ff00c8;">Mission :</span> Aide aux personnes en situation de précarité (distribution alimentaire, aide vestimentaire, accueil social)</p>
+                        <p><span style="color: #ff00c8;">Bénévoles :</span> Une équipe de bénévoles dévoués</p>
+                    </div>
+
+                    <div id="isa-tab2" class="tab-content">
+                        <h4 style="color: #00ffff; margin-bottom: 0.5rem;">🎯 OBJECTIFS</h4>
+                        <ul style="color: #00ffff; margin-left: 1.5rem;">
+                            <li>Créer un site web pour améliorer la visibilité de l'association</li>
+                            <li>Permettre aux bénévoles de postuler en ligne</li>
+                            <li>Présenter les actions et événements de l'association</li>
+                            <li>Apporter un support informatique aux bénévoles</li>
+                        </ul>
+                    </div>
+
+                    <div id="isa-tab3" class="tab-content">
+                        <h4 style="color: #ff00c8; margin-bottom: 0.5rem;">💻 RÉALISATIONS</h4>
+                        <ul style="color: #00ffff; margin-left: 1.5rem;">
+                            <li>Création complète du site en HTML/CSS</li>
+                            <li>Pages : Accueil, Nos actions, Devenir bénévole, Déposer ma candidature, Contact</li>
+                            <li>Formulaires de contact et de candidature</li>
+                            <li>Design responsive et chaleureux</li>
+                            <li>Dépannages informatiques (nettoyage disques, mise à jour logiciels, configuration Wi-Fi)</li>
+                            <li>Création d'un flyer sur Canva pour la braderie</li>
+                        </ul>
+                    </div>
+
+                    <div id="isa-tab4" class="tab-content">
+                        <h4 style="color: #00ffff; margin-bottom: 0.5rem;">🛠️ TECHNOS</h4>
+                        <div class="xp-tags">
+                            <span class="xp-tag">HTML5</span>
+                            <span class="xp-tag">CSS3</span>
+                            <span class="xp-tag">Canva</span>
+                            <span class="xp-tag">Support IT</span>
+                        </div>
+                    </div>
+
+                    <div id="isa-tab5" class="tab-content">
+                        <h4 style="color: #ff00c8; margin-bottom: 0.5rem;">🔗 LIEN SITE</h4>
+                        <div style="text-align: center; padding: 1rem;">
+                            <a href="https://basickhaldy-del.github.io/ISA/" target="_blank" style="color: #00ffff; font-size: 1.2rem;">
+                                🌐 ISA
+                            </a>
+                        </div>
+                    </div>
+
+                    <div id="isa-tab6" class="tab-content">
+                        <h4 style="color: #00ffff; margin-bottom: 0.5rem;">📊 BILAN</h4>
+                        <ul style="color: #00ffff; margin-left: 1.5rem;">
+                            <li>Mise en pratique des compétences web en contexte réel</li>
+                            <li>Découverte du fonctionnement d'une association solidaire</li>
+                            <li>Développement de l'autonomie et de l'adaptabilité</li>
+                            <li>Allier technique et dimension humaine</li>
+                        </ul>
+                    </div>
+
+                    <div class="xp-tags" style="margin-top: 1rem;">
+                        <span class="xp-tag">HTML5</span>
+                        <span class="xp-tag">CSS3</span>
+                        <span class="xp-tag">Canva</span>
+                        <span class="xp-tag">Support IT</span>
+                    </div>
+                </div>
+
+                <!-- Stage 2 - ITECH SARL -->
+                <div class="quest-card">
+                    <div class="quest-date">🗓️ STAGE 2 - JANVIER 2026 - FÉVRIER 2026 (6 SEMAINES)</div>
+                    <div class="quest-title">Développeur Web - Création de site internet</div>
+                    <div class="quest-company">🏢 ITECH SARL - Les Mureaux (78)</div>
+                    
+                    <!-- Boutons d'onglets Stage 2 -->
+                    <div class="tab-buttons">
+                        <button class="tab-btn" onclick="showTabITECH(1)">📋 PRÉSENTATION</button>
+                        <button class="tab-btn cyan" onclick="showTabITECH(2)">🎯 OBJECTIFS</button>
+                        <button class="tab-btn" onclick="showTabITECH(3)">💻 RÉALISATIONS</button>
+                        <button class="tab-btn cyan" onclick="showTabITECH(4)">🛠️ TECHNOS</button>
+                        <button class="tab-btn" onclick="showTabITECH(5)">🔗 LIEN SITE</button>
+                        <button class="tab-btn cyan" onclick="showTabITECH(6)">📊 BILAN</button>
+                    </div>
+
+                    <!-- Contenu des onglets Stage 2 -->
+                    <div id="itech-tab1" class="tab-content active">
+                        <h4 style="color: #ff00c8; margin-bottom: 0.5rem;">📋 PRÉSENTATION</h4>
+                        <p><span style="color: #ff00c8;">Nom :</span> ITECH SARL</p>
+                        <p><span style="color: #ff00c8;">Localisation :</span> Les Mureaux (78)</p>
+                        <p><span style="color: #ff00c8;">Secteur :</span> Services et conseil en informatique</p>
+                        <p><span style="color: #ff00c8;">Activité :</span> Réparation d'appareils mobiles et de tout type d'ordinateurs.</p>
+                    </div>
+
+                    <div id="itech-tab2" class="tab-content">
+                        <h4 style="color: #00ffff; margin-bottom: 0.5rem;">🎯 OBJECTIFS</h4>
+                        <ul style="color: #00ffff; margin-left: 1.5rem;">
+                            <li>Créer un site internet professionnel pour ITECH SARL</li>
+                            <li>Moderniser l'image de l'entreprise et améliorer sa visibilité en ligne</li>
+                            <li>Intégrer un formulaire de contact fonctionnel</li>
+                            <li>Mettre en place une structure évolutive</li>
+                        </ul>
+                    </div>
+
+                    <div id="itech-tab3" class="tab-content">
+                        <h4 style="color: #ff00c8; margin-bottom: 0.5rem;">💻 RÉALISATIONS</h4>
+                        <ul style="color: #00ffff; margin-left: 1.5rem;">
+                            <li>Développement complet d'un site responsive en HTML5, CSS3 et JavaScript</li>
+                            <li>Création des pages : Accueil, Services, À propos, Devis, Contact</li>
+                            <li>Intégration d'un formulaire de devis fonctionnel</li>
+                            <li>Design moderne et professionnel</li>
+                        </ul>
+                    </div>
+
+                    <div id="itech-tab4" class="tab-content">
+                        <h4 style="color: #00ffff; margin-bottom: 0.5rem;">🛠️ TECHNOS</h4>
+                        <div class="xp-tags">
+                            <span class="xp-tag">HTML5</span>
+                            <span class="xp-tag">CSS3</span>
+                            <span class="xp-tag">JavaScript</span>
+                            <span class="xp-tag">PHP</span>
+                        </div>
+                    </div>
+
+                    <div id="itech-tab5" class="tab-content">
+    <h4 style="color: #ff00c8; margin-bottom: 0.5rem;">🔗 LIEN SITE</h4>
+    <div style="text-align: center; padding: 1rem;">
+        <a href="https://itech.alwaysdata.net" class="doc-btn" target="_blank">
+            🌐 itech-sarl.fr
+        </a>
+    </div>
+</div>
+
+                    <div id="itech-tab6" class="tab-content">
+                        <h4 style="color: #00ffff; margin-bottom: 0.5rem;">📊 BILAN</h4>
+                        <ul style="color: #00ffff; margin-left: 1.5rem;">
+                            <li>Mise en pratique des compétences web en contexte professionnel</li>
+                            <li>Découverte des besoins d'une entreprise de services</li>
+                            <li>Développement de l'autonomie et de la relation client</li>
+                            <li>Respect des délais et des attentes du client</li>
+                        </ul>
+                    </div>
+
+                    <div class="xp-tags" style="margin-top: 1rem;">
+                        <span class="xp-tag">HTML5</span>
+                        <span class="xp-tag">CSS3</span>
+                        <span class="xp-tag">JavaScript</span>
+                        <span class="xp-tag">PHP</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Systèmes d'exploitation -->
+            <h2 id="os" class="section-title">💻 SYSTÈMES D'EXPLOITATION UTILISéS</h2>
+            <div class="os-gaming-grid">
+                <div class="os-gaming-card"><div class="os-icon">🪟</div><h3 class="windows">WINDOWS</h3></div>
+                <div class="os-gaming-card"><div class="os-icon">⚔️</div><h3 class="kali">KALI LINUX</h3></div>
+                <div class="os-gaming-card"><div class="os-icon">🐧</div><h3 class="debian">DEBIAN</h3></div>
+            </div>
+
+            <!-- Formation et diplômes -->
+            <h2 id="formation" class="section-title">🎓 FORMATION & DIPLÔMES</h2>
+            <div class="quests-grid">
+                <div class="quest-card">
+                    <div class="quest-date">2024 - 2026</div>
+                    <div class="quest-title">BTS SIO SLAM</div>
+                    <div class="quest-company">🏫 Lycée L'HAUTIL</div>
+                    <div class="xp-tags"><span class="xp-tag">Développement</span><span class="xp-tag">Cybersécurité</span><span class="xp-tag">Réseaux</span></div>
+                </div>
+                <div class="quest-card">
+                    <div class="quest-date">2024</div>
+                    <div class="quest-title">BAC STMG</div>
+                    <div class="quest-company">🏫 Lycée François villon</div>
+                    <div class="xp-tags"><span class="xp-tag">Mention assez bien</span></div>
+                </div>
+            </div>
+
+           <!-- Certifications -->
+<h2 id="certifs" class="section-title">🏆 CERTIFICATIONS</h2>
+<div class="research-lab">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+        
+        <!-- Pix -->
+        <div class="lab-item" style="text-align: center;">
+            <div style="font-size: 2rem;">📋</div>
+            <h4>Certification Pix</h4>
+            <p style="color: #00ffff; font-size: 0.7rem;">Compétences numériques</p>
+            <a href="pix.pdf" target="_blank" class="article-link" style="display: inline-block; background: #ff00c8; color: white; padding: 0.5rem 1rem; border-radius: 5px; margin-top: 0.5rem;">📥 VOIR</a>
+        </div>
+
+        <!-- SecNum Académie -->
+        <div class="lab-item" style="text-align: center;">
+            <div style="font-size: 2rem;">🛡️</div>
+            <h4>SecNum Académie</h4>
+            <p style="color: #00ffff; font-size: 0.7rem;">ANSSI - Certification</p>
+            <a href="KHALDY_certification_sec_num (1).pdf" target="_blank" class="article-link" style="display: inline-block; background: #ff00c8; color: white; padding: 0.5rem 1rem; border-radius: 5px; margin-top: 0.5rem;">📥 VOIR</a>
+        </div>
+
+        <!-- Web Sémantique -->
+        <div class="lab-item" style="text-align: center;">
+            <div style="font-size: 2rem;">🌐</div>
+            <h4>Web Sémantique</h4>
+            <p style="color: #00ffff; font-size: 0.7rem;">Web de données</p>
+            <a href="Web_Sémantique_et_Web_de_données.pdf" target="_blank" class="article-link">📥 VOIR</a>
+        </div>
+
+        <!-- Sécurité matérielle -->
+        <div class="lab-item" style="text-align: center;">
+            <div style="font-size: 2rem;">🔒</div>
+            <h4>Sécurité matérielle</h4>
+            <p style="color: #00ffff; font-size: 0.7rem;">Attaques physiques</p>
+            <a href="Sécurité_matérielle__les_attaques_physiques.pdf" target="_blank" class="article-link">📥 VOIR</a>
+        </div>
+
+        <!-- Module 1 -->
+        <div class="lab-item" style="text-align: center;">
+            <div style="font-size: 2rem;">📘</div>
+            <h4>Module 1</h4>
+            <p style="color: #00ffff; font-size: 0.7rem;">Introduction</p>
+            <a href="ATTESTATION_DE_SUIVI_MODULE_1.pdf" target="_blank" class="article-link">📥 VOIR</a>
+        </div>
+
+        <!-- Module 2 -->
+        <div class="lab-item" style="text-align: center;">
+            <div style="font-size: 2rem;">📗</div>
+            <h4>Module 2</h4>
+            <p style="color: #00ffff; font-size: 0.7rem;">Sécurité</p>
+            <a href="ATTESTATION_DE_SUIVI_MODULE_2.pdf" target="_blank" class="article-link">📥 VOIR</a>
+        </div>
+
+        <!-- Module 3 -->
+        <div class="lab-item" style="text-align: center;">
+            <div style="font-size: 2rem;">📙</div>
+            <h4>Module 3</h4>
+            <p style="color: #00ffff; font-size: 0.7rem;">Réseaux</p>
+            <a href="ATTESTATION_DE_SUIVI_MODULE_3.pdf" target="_blank" class="article-link">📥 VOIR</a>
+        </div>
+
+        <!-- Module 4 -->
+        <div class="lab-item" style="text-align: center;">
+            <div style="font-size: 2rem;">📕</div>
+            <h4>Module 4</h4>
+            <p style="color: #00ffff; font-size: 0.7rem;">Cryptographie</p>
+            <a href="ATTESTATION_DE_SUIVI_MODULE_4.pdf" target="_blank" class="article-link">📥 VOIR</a>
+        </div>
+
+        <!-- Module 5 -->
+        <div class="lab-item" style="text-align: center;">
+            <div style="font-size: 2rem;">📓</div>
+            <h4>Module 5</h4>
+            <p style="color: #00ffff; font-size: 0.7rem;">Sécurité avancée</p>
+            <a href="ATTESTATION_DE_SUIVI_MODULE_5.pdf" target="_blank" class="article-link">📥 VOIR</a>
+        </div>
+    </div>
+    
+    <div style="margin-top: 2rem; text-align: center;">
+        <div style="display: inline-block; background: linear-gradient(135deg, #ff00c8, #00ffff); padding: 0.8rem 2rem; border-radius: 30px;">
+            <span style="color: white; font-family: 'Press Start 2P', cursive; font-size: 0.7rem;">🏆 9 CERTIFICATIONS OBTENUES 🏆</span>
+        </div>
+    </div>
+</div>
+
+            <!-- Outils et logiciels -->
+            <h2 id="outils" class="section-title">🛠️ OUTILS & LOGICIELS</h2>
+            <div class="skill-tree">
+                <span class="skill-node">VS Code</span>
+                <span class="skill-node">Git/GitHub</span>
+                <span class="skill-node">Docker</span>
+                <span class="skill-node">VirtualBox</span>
+                
+            </div>
+
+            <!-- Veille technologique -->
+            <h2 id="veille" class="section-title">🔬 LABORATOIRE DE VEILLE</h2>
+            <div class="research-lab">
+                <div style="background: rgba(255,0,200,0.1); padding: 1rem; border-left: 4px solid #ff00c8; margin-bottom: 2rem;">
+                    <p style="color: #00ffff; font-family: 'Press Start 2P', cursive; font-size: 0.7rem;">🎯 THÈME DE RECHERCHE</p>
+                    <p style="color: white;">« L'intelligence artificielle générative au service de la cybersécurité »</p>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <p style="color: #00ffff; font-family: 'Press Start 2P', cursive; font-size: 0.6rem;">🛠️ OUTILS DE VEILLE</p>
+                    <div class="xp-tags"><span class="xp-tag">Google Alerte</span></div>
+                </div>
+                <div class="lab-grid">
+                    <div class="lab-item"><div class="article-date">25/03</div><h4>OpenAI investit 500 milliards</h4><p>Investissement massif dans 5 nouveaux data centers</p><a href="#" class="article-link">🔗 Lire →</a></div>
+                    <div class="lab-item"><div class="article-date">25/03</div><h4>90% des travailleurs tech utilisent l'IA</h4><p>Étude Google sur l'adoption massive</p><a href="#" class="article-link">🔗 Lire →</a></div>
+                    <div class="lab-item"><div class="article-date">24/03</div><h4>Chrome écoute les articles</h4><p>Résumé audio des articles façon podcast</p><a href="#" class="article-link">🔗 Lire →</a></div>
+                    <div class="lab-item"><div class="article-date">24/03</div><h4>28% des morceaux Deezer générés par IA</h4><p>Près d'un tiers des nouvelles musiques créées par IA</p><a href="#" class="article-link">🔗 Lire →</a></div>
+                    <div class="lab-item"><div class="article-date">24/03</div><h4>Perplexity Email Assistant</h4><p>Assistant IA pour gérer les boîtes mail</p><a href="#" class="article-link">🔗 Lire →</a></div>
+                    <div class="lab-item"><div class="article-date">23/03</div><h4>Synthèse ANSSI sur l'IA générative</h4><p>Rapport officiel sur les cybermenaces</p><a href="#" class="article-link">🔗 Lire →</a></div>
+                    <div class="lab-item"><div class="article-date">23/03</div><h4>Risques des systèmes d'IA</h4><p>Jailbreaking, data poisoning, injections prompt</p><a href="#" class="article-link">🔗 Lire →</a></div>
+                    <div class="lab-item"><div class="article-date">22/03</div><h4>Adobe Firefly vidéo</h4><p>IA de génération vidéo haut de gamme</p><a href="#" class="article-link">🔗 Lire →</a></div>
+                </div>
+                <div style="margin-top: 2rem; text-align: center;">
+                    <div class="xp-tags" style="justify-content: center;"><span class="xp-tag">15+ ARTICLES</span><span class="xp-tag">VEILLE QUOTIDIENNE</span><span class="xp-tag">5 OUTILS</span></div>
+                </div>
+            </div>
+
+            <!-- Compétences techniques -->
+            <h2 id="skills" class="section-title">🌟 ARBRE DE COMPÉTENCES</h2>
+            <div class="skill-tree">
+                <span class="skill-node">HTML5</span><span class="skill-node">CSS3</span><span class="skill-node">JavaScript</span>
+                <span class="skill-node">PHP</span><span class="skill-node">Python</span><span class="skill-node">Java</span>
+                <span class="skill-node">MySQL</span><span class="skill-node">Git</span><span class="skill-node">Bash</span>
+                <span class="skill-node">PowerShell</span><span class="skill-node">Laravel</span><span class="skill-node">Vue.js</span>
+                <span class="skill-node">React</span><span class="skill-node">Node.js</span><span class="skill-node">Docker</span>
+            </div>
+
+            <!-- Langues -->
+            <h2 id="langues" class="section-title">🗣️ LANGUES</h2>
+            <div class="langues-grid">
+                <div class="langue-card"><span>FR</span><h4>Français</h4><p>Langue maternelle</p></div>
+                <div class="langue-card"><span>AR</span><h4>Arabe</h4><p>Langue maternelle</p></div>
+				<div class="langue-card"><span>AG</span><h4>Anglais</h4><p>Niveau B1</p></div>
+            </div>
+			<!-- Tableau de synthèse E4 -->
+<h2 class="section-title">📊 TABLEAU DE SYNTHÈSE E4</h2>
+<div class="research-lab">
+    <div style="text-align: center; padding: 2rem;">
+        
+        <!-- Titre principal -->
+        <div style="margin-bottom: 2rem;">
+            <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">📋</span>
+            <h3 style="color: #ff00c8; font-family: 'Press Start 2P', cursive; font-size: 1.2rem; margin-bottom: 1rem;">
+                ÉPREUVE E4 - BTS SIO
+            </h3>
+            <h4 style="color: #00ffff; font-family: 'Press Start 2P', cursive; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                TABLEAU DE SYNTHÈSE DES COMPÉTENCES
+            </h4>
+            <p style="color: white; margin-bottom: 2rem; line-height: 1.8;">
+                Document officiel présentant l'ensemble de mes compétences développées durant mes stages<br>
+                et mes réalisations en BTS SIO, option SLAM.
+                <br><br>
+                <span style="color: #888; font-size: 0.8rem;">📅 Session 2026 | BTS Services Informatiques aux Organisations</span>
+            </p>
+        </div>
+
+        <!-- Bouton de téléchargement -->
+        <div style="margin-bottom: 2rem;">
+            <a href="TablSynth.pdf" target="_blank" class="doc-btn" style="background: linear-gradient(135deg, #ff00c8, #00ffff); color: white; padding: 1.2rem 2.5rem; font-size: 0.8rem; border: 2px solid white; box-shadow: 0 0 20px #ff00c8; animation: nodePulse 2s infinite; display: inline-flex; align-items: center; gap: 1rem;">
+                <i class="fas fa-file-pdf" style="font-size: 1.5rem;"></i>
+                📥 TÉLÉCHARGER LE TABLEAU DE SYNTHÈSE
+            </a>
+        </div>
+
+        <!-- Informations détaillées -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
+            
+            <div style="background: rgba(255,0,200,0.15); padding: 1rem; border-radius: 10px; border: 1px solid #ff00c8;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
+                <p style="color: #00ffff; font-family: 'Press Start 2P', cursive; font-size: 0.6rem;">COMPÉTENCES</p>
+                <p style="color: white; font-size: 1.2rem; font-weight: bold;">6</p>
+                <p style="color: #888; font-size: 0.7rem;">compétences évaluées</p>
+            </div>
+
+            <div style="background: rgba(0,255,255,0.15); padding: 1rem; border-radius: 10px; border: 1px solid #00ffff;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏢</div>
+                <p style="color: #ff00c8; font-family: 'Press Start 2P', cursive; font-size: 0.6rem;">STAGES</p>
+                <p style="color: white; font-size: 1.2rem; font-weight: bold;">2</p>
+                <p style="color: #888; font-size: 0.7rem;">stages présentés</p>
+            </div>
+
+            <div style="background: rgba(255,0,200,0.15); padding: 1rem; border-radius: 10px; border: 1px solid #ff00c8;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎯</div>
+                <p style="color: #00ffff; font-family: 'Press Start 2P', cursive; font-size: 0.6rem;">RÉALISATIONS</p>
+                <p style="color: white; font-size: 1.2rem; font-weight: bold;">4+</p>
+                <p style="color: #888; font-size: 0.7rem;">projets et réalisations</p>
+            </div>
+
+            <div style="background: rgba(0,255,255,0.15); padding: 1rem; border-radius: 10px; border: 1px solid #00ffff;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔬</div>
+                <p style="color: #ff00c8; font-family: 'Press Start 2P', cursive; font-size: 0.6rem;">VEILLE</p>
+                <p style="color: white; font-size: 1.2rem; font-weight: bold;">15+</p>
+                <p style="color: #888; font-size: 0.7rem;">articles de veille</p>
+            </div>
+        </div>
+
+        <!-- Légende des compétences -->
+        <div style="margin-top: 2rem; background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; text-align: left;">
+            <p style="color: #ff00c8; font-family: 'Press Start 2P', cursive; font-size: 0.6rem; margin-bottom: 1rem;">📌 COMPÉTENCES ÉVALUÉES DANS LE TABLEAU :</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+                <span style="background: rgba(0,255,255,0.2); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.7rem;">🔹 Gérer le patrimoine informatique</span>
+                <span style="background: rgba(255,0,200,0.2); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.7rem;">🔹 Répondre aux incidents</span>
+                <span style="background: rgba(0,255,255,0.2); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.7rem;">🔹 Développer la présence en ligne</span>
+                <span style="background: rgba(255,0,200,0.2); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.7rem;">🔹 Travailler en mode projet</span>
+                <span style="background: rgba(0,255,255,0.2); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.7rem;">🔹 Mettre à disposition des services</span>
+                <span style="background: rgba(255,0,200,0.2); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.7rem;">🔹 Organiser son développement</span>
+            </div>
+        </div>
+
+        <!-- Lien vers le document si besoin -->
+        <div style="margin-top: 1.5rem;">
+            <p style="color: #888; font-size: 0.7rem;">
+                <i class="fas fa-info-circle"></i> Le document est au format PDF - Assurez-vous d'avoir un lecteur PDF pour l'ouvrir.
+            </p>
+        </div>
+    </div>
+</div>
+
+            <!-- FORMULAIRE DE CONTACT -->
+            <h2 id="contact" class="section-title">📬 FORMULAIRE DE CONTACT</h2>
+            <div class="contact-form-container">
+                <form id="contactForm" class="contact-form" action="#" method="POST">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> VOTRE NOM</label>
+                        <input type="text" id="name" name="name" placeholder="ex: hatim Khaldy" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> VOTRE EMAIL</label>
+                        <input type="email" id="email" name="email" placeholder="ex: hatimkhaldy00@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> TÉLÉPHONE (OPTIONNEL)</label>
+                        <input type="tel" id="phone" name="phone" placeholder="ex 07 58 41 47 43">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-tag"></i> SUJET</label>
+                        <select id="subject" name="subject">
+                            <option value="stage">📌 Demande de stage</option>
+                            <option value="projet">🎮 Proposition de projet</option>
+                            <option value="info">ℹ️ Demande d'information</option>
+                            <option value="autre">💬 Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-comment"></i> VOTRE MESSAGE</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Écrivez votre message ici..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> ENVOYER LE MESSAGE
+                    </button>
+                    <div id="formMessage" style="margin-top: 1rem; text-align: center;"></div>
+                </form>
+            </div>
+
+            <!-- Réseaux sociaux -->
+            <div class="social-links">
+                <a href="https://github.com/hatimkhaldy" class="doc-btn" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <!-- <a href="https://www.linkedin.com/in/hatim-khaldy-919102210/" class="doc-btn" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> -->
+                <a href="https://twitter.com/votre-compte" class="doc-btn" target="_blank"><i class="fab fa-twitter"></i> Twitter/X</a>
+                <a href="mailto:hatimkhaldy00@email@email.com" class="doc-btn"><i class="fas fa-envelope"></i> Email</a>
+                <a href="tel:+33758414743" class="doc-btn"><i class="fas fa-phone"></i> Téléphone</a>
+            </div>
+
+            <!-- Carte de localisation -->
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83998.94722640066!2d2.264634!3d48.858844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis!5e0!3m2!1sfr!2sfr!4v1711123456789!5m2!1sfr!2sfr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <!-- Footer -->
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="color: #888; font-size: 0.7rem;">© 2026 Hatim Khaldy - Portfolio Gamer | BTS SIO SLAM</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changePage(pageNumber) {
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('page2').classList.remove('active');
+            document.getElementById('page' + pageNumber).classList.add('active');
+            document.querySelectorAll('.game-btn').forEach((btn, index) => {
+                if (index === pageNumber - 1) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            window.scrollTo(0, 0);
+        }
+
+        // Fonctions pour les onglets du Stage 1 (ISA)
+        function showTabISA(tabNumber) {
+            for(let i = 1; i <= 6; i++) {
+                document.getElementById('isa-tab' + i).classList.remove('active');
+            }
+            document.getElementById('isa-tab' + tabNumber).classList.add('active');
+        }
+
+        // Fonctions pour les onglets du Stage 2 (ITECH)
+        function showTabITECH(tabNumber) {
+            for(let i = 1; i <= 6; i++) {
+                document.getElementById('itech-tab' + i).classList.remove('active');
+            }
+            document.getElementById('itech-tab' + tabNumber).classList.add('active');
+        }
+
+        function createGameParticles() {
+            const container = document.getElementById('particles-game');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle-game';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.background = Math.random() > 0.5 ? '#ff00c8' : '#00ffff';
+                container.appendChild(particle);
+            }
+        }
+        createGameParticles();
+
+        // Gestion du formulaire de contact
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ENVOI EN COURS...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                formMessage.innerHTML = `
+                    <div class="form-success">
+                        <i class="fas fa-check-circle"></i>
+                        ✅ Message envoyé avec succès !<br>
+                        <small style="font-size: 0.6rem;">Je vous répondrai dans les plus brefs délais.</small>
+                    </div>
+                `;
+                
+                contactForm.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                setTimeout(() => {
+                    formMessage.innerHTML = '';
+                }, 5000);
+            }, 1500);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '1') changePage(1);
+            if (e.key === '2') changePage(2);
+        });
+    </script>
+</body>
+</html>
